@@ -1,0 +1,7 @@
+<?php
+if ($_extraDescription= $block->getCurrentCategory()->getData('extra_description')){
+	?><div id="bottom_description"><?php
+			echo $this->helper('Magento\Catalog\Helper\Output')->categoryAttribute($block->getCurrentCategory(), $_extraDescription, 'extra_description');
+	?></div><?php
+}
+?>

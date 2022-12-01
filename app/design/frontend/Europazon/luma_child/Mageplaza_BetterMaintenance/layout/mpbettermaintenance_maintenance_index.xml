@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterMaintenance
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="empty" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Mageplaza_BetterMaintenance::css/style.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/betheme-assets-animations-animations.min.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/betheme-assets-jplayer-css-jplayer.blue.monday.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/betheme-css-be.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/betheme-css-responsive.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/betheme-fonts-fontawesome-fontawesome.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/dist-block-library-style.min.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/europazon-style.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/js_composer-assets-css-js_composer.min.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/js_composer-assets-lib-bower-animate-css-animate.min.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/js_composer-assets-lib-bower-font-awesome-css-all.min.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/js_composer-assets-lib-bower-font-awesome-css-v4-shims.min.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/js_composer-assets-lib-lightbox2-dist-css-lightbox.min.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/js_composer-assets-lib-owl-carousel2-dist-assets-owl.min.css"/>
+        <css src="Mageplaza_BetterMaintenance::css/css/revslider-public-assets-css-rs6.css"/>
+
+        <link src="Mageplaza_BetterMaintenance::js/js/betheme-assets-animations-animations.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/betheme-assets-jplayer-jplayer.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/betheme-js-menu.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/betheme-js-parallax-translate3d.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/betheme-js-plugins.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/betheme-js-scripts.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/google-analytics-for-wordpress-assets-js-frontend-gtag.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/jquery-jquery.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/jquery-jquery-migrate.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/jquery-ui-core.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/jquery-ui-tabs.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/js_composer-assets-js-dist-js_composer_front.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/js_composer-assets-js-dist-vc_grid.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/js_composer-assets-lib-bower-imagesloaded-imagesloaded.pkgd.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/js_composer-assets-lib-lightbox2-dist-js-lightbox.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/js_composer-assets-lib-owl-carousel2-dist-owl.carousel.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/js_composer-assets-lib-vc_waypoints-vc-waypoints.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/revslider-public-assets-js-rbtools.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/revslider-public-assets-js-rs6.min.js"/>
+        <link src="Mageplaza_BetterMaintenance::js/js/xd9-underscore.min.js"/>
+    </head>
+    <body>
+        <referenceContainer name="page.wrapper">
+            <block class="Magento\Framework\View\Element\FormKey" name="formkey"/>
+            <referenceContainer name="main.content" remove="true"/>
+            <referenceContainer name="copyright" remove="true"/>
+            <referenceContainer name="content" remove="true"/>
+            <referenceBlock name="frontend-storage-manager" remove="true"/>
+            <block class="Mageplaza\BetterMaintenance\Block\Redirect" name="mpbettermaintenance.redirect" ifconfig="mpbettermaintenance/general/enabled"/>
+            <block class="Mageplaza\BetterMaintenance\Block\Maintenance" name="mpbettermaintenance.maintenance.page" template="Mageplaza_BetterMaintenance::maintenance.phtml">
+                <block class="Mageplaza\BetterMaintenance\Block\Clock" name="mpbettermaintenance.clock" as="clock_countdown" template="Mageplaza_BetterMaintenance::clock/timer.phtml"/>
+                <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe" as="subscribe" template="subscribe.phtml"/>
+                <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" as="register" template="form/register.phtml"/>
+                <block class="Mageplaza\BetterMaintenance\Block\Background" name="mpbettermaintenance.background" as="background" template="Mageplaza_BetterMaintenance::background.phtml"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

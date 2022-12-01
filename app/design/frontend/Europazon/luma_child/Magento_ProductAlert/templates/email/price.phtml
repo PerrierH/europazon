@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\ProductAlert\Block\Email\Price */
+?>
+<?php if ($_products = $block->getProducts()) : ?>
+    <table>
+    <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+    <?php foreach ($_products as $_product) : ?>
+        <tr>
+            <td class="col photo">
+                <a style="margin-right: 15px;" href="<?= $block->escapeUrl($_product->getProductUrl()) ?>" title="<?= $block->escapeHtml($_product->getName()) ?>" class="product photo">
+                    <?= $block->getImage($_product, 'product_small_image', ['class' => 'photo image'])->toHtml() ?>
+                </a>
+            </td>
+            <td class="col item">
+                <p>
+                    <strong class="product name">
+                        <a style="color: #0d368b;" href="<?= $block->escapeUrl($_product->getProductUrl()) ?>"><?= $block->escapeHtml($_product->getName()) ?></a>
+                    </strong>
+                </p>
+                <?php if ($shortDescription = $block->getFilteredContent($_product->getShortDescription())) : ?>
+                    <p style="color: #000000;"><small><?= /* @noEscape */  $shortDescription ?></small></p>
+                <?php endif; ?>
+                <?=
+                $block->getProductPriceHtml(
+                    $_product,
+                    \Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE,
+                    \Magento\Framework\Pricing\Render::ZONE_EMAIL,
+                    [
+                        'display_label' => __('Price:'),
+                    ]
+                );
+                ?>
+                <p><small><a style="color: #0d368b;" href="<?= $block->escapeUrl($block->getProductUnsubscribeUrl($_product->getId())) ?>"><?= $block->escapeHtml(__('Click here to stop alerts for this product.')) ?></a></small></p>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </table>
+    <a class="button_account" href="https://europazon.fr/customer/account/login" style="margin-top: 30px; font-weight: bold; color: white; padding: 10px; background-color: #0d368b; border-radius: 5px; margin-right: 15px;">Mon compte</a>
+    <a class="button_pricealert" href="https://europazon.fr/alerte-de-prix" style="margin-top: 30px;  font-weight: bold; color: white; padding: 10px; background-color: #0d368b; border-radius: 5px;">Alertes de prix</a>
+<?php endif; ?>

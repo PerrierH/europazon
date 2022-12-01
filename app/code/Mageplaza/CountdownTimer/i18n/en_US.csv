@@ -1,0 +1,89 @@
+Save,Save
+"Save and Continue Edit","Save and Continue Edit"
+"Edit Countdown Timer '%1'","Edit Countdown Timer '%1'"
+"New Countdown Timer","New Countdown Timer"
+"Apply the rule only if the following conditions are met (leave blank for all products).","Apply the rule only if the following conditions are met (leave blank for all products)."
+Conditions,Conditions
+Display,Display
+"Display On","Display On"
+"Before Starting Countdown","Before Starting Countdown"
+Enable,Enable
+"Clock Style","Clock Style"
+"Template on Product View","Template on Product View"
+"Use the variables {{clock}}, {{save_amount}} & {{save_percent}} for the template","Use the variables {{clock}}, {{save_amount}} & {{save_percent}} for the template"
+"Template on Category View","Template on Category View"
+"Title Color","Title Color"
+"Message Color","Message Color"
+"Clock Background Color","Clock Background Color"
+"Number Color","Number Color"
+"Text Color","Text Color"
+"Time Remaining Countdown","Time Remaining Countdown"
+"Item Information","Item Information"
+Name,Name
+Status,Status
+"Store Views","Store Views"
+"Customer Groups","Customer Groups"
+"Select customer group(s) to display the rule to","Select customer group(s) to display the rule to"
+"Apply for","Apply for"
+"Select Catalog Price Rule","Select Catalog Price Rule"
+"Start Countdown Date","Start Countdown Date"
+"End Countdown Date","End Countdown Date"
+Priority,Priority
+"Default is 0. The rule with the lower number will get the higher priority.","Default is 0. The rule with the lower number will get the higher priority."
+General,General
+"Use the following code to show Countdown Timer block at any places you want.","Use the following code to show Countdown Timer block at any places you want."
+"CMS Page/Static Block","CMS Page/Static Block"
+"Template .phtml file","Template .phtml file"
+"Layout file","Layout file"
+"Requested %1 product doesn't exist","Requested %1 product doesn't exist"
+"Manage Rules","Manage Rules"
+"The rule has been deleted.","The rule has been deleted."
+"This rule no longer exists.","This rule no longer exists."
+"Countdown Timer","Countdown Timer"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"Something went wrong while updating status for %1.","Something went wrong while updating status for %1."
+"A total of %1 record(s) have been updated.","A total of %1 record(s) have been updated."
+"The wrong rule is specified.","The wrong rule is specified."
+"You saved the rule.","You saved the rule."
+"Something went wrong while saving the rule data. Please review the error log.","Something went wrong while saving the rule data. Please review the error log."
+Days,Days
+Hours,Hours
+Minutes,Minutes
+Seconds,Seconds
+"The module is disabled","The module is disabled"
+"Rule does not exits","Rule does not exits"
+"No such entity ID","No such entity ID"
+"Please specific field(s): %1","Please specific field(s): %1"
+"Please specific %1 field. Valid type must be one of values: %2","Please specific %1 field. Valid type must be one of values: %2"
+"Please specific %1 field. Valid style must be one of values: %2","Please specific %1 field. Valid style must be one of values: %2"
+"Priority is not negative number","Priority is not negative number"
+"Please specific %1 field. Valid store must be one of values: %2","Please specific %1 field. Valid store must be one of values: %2"
+"Please specific %1 field. Valid group must be one of values: %2","Please specific %1 field. Valid group must be one of values: %2"
+Simple,Simple
+Circle,Circle
+Square,Square
+Stack,Stack
+Modern,Modern
+"Category Page","Category Page"
+"Product Page","Product Page"
+"All Products with Special Prices","All Products with Special Prices"
+"Specific Products with Special Prices","Specific Products with Special Prices"
+"Inherit Conditions from Catalog Rules","Inherit Conditions from Catalog Rules"
+"None Product Base","None Product Base"
+Edit,Edit
+"All Customer Groups","All Customer Groups"
+"All Store Views","All Store Views"
+"Select Yes to enable this module","Select Yes to enable this module"
+"Mageplaza Countdown Timer","Mageplaza Countdown Timer"
+"Show countdown timer to your site","Show countdown timer to your site"
+"Select Rule","Select Rule"
+"Add New","Add New"
+"Store View","Store View"
+Delete,Delete
+"Delete Rules","Delete Rules"
+"Are you sure you wan't to delete selected Rules?","Are you sure you wan't to delete selected Rules?"
+"Change status","Change status"
+Disable,Disable
+ID,ID
+"Created Date","Created Date"
+"Updated Date","Updated Date"

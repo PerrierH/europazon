@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_CountdownTimer
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/mpCountdownTimer/rules/:id" method="GET">
+        <service class="Mageplaza\CountdownTimer\Api\RuleRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Mageplaza_CountdownTimer::rules"/>
+        </resources>
+    </route>
+    <route url="/V1/mpCountdownTimer/rules" method="GET">
+        <service class="Mageplaza\CountdownTimer\Api\RuleRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Mageplaza_CountdownTimer::rules"/>
+        </resources>
+    </route>
+    <route url="/V1/mpCountdownTimer/rules/:id" method="DELETE">
+        <service class="Mageplaza\CountdownTimer\Api\RuleRepositoryInterface" method="delete"/>
+        <resources>
+            <resource ref="Mageplaza_CountdownTimer::edit"/>
+        </resources>
+    </route>
+    <route url="/V1/mpCountdownTimer/rule" method="POST">
+        <service class="Mageplaza\CountdownTimer\Api\RuleRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Mageplaza_CountdownTimer::edit"/>
+        </resources>
+    </route>
+    <route url="/V1/mpCountdownTimer/mine/page/:type/products/:id" method="GET">
+        <service class="Mageplaza\CountdownTimer\Api\RuleRepositoryInterface" method="getByProduct"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/mpCountdownTimer/guest/page/:type/products/:id" method="GET">
+        <service class="Mageplaza\CountdownTimer\Api\RuleRepositoryInterface" method="getByProduct"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

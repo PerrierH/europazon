@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<div class="header-customer mobile">
+    <li class="customer-welcome">
+        <span class="customer-name"
+              role="link"
+              tabindex="0"
+              data-mage-init='{"dropdown":{}}'
+              data-toggle="dropdown"
+              data-trigger-keypress-button="true"
+              data-bind="scope: 'customer'">
+            <i class="fas fa-user"></i>
+            <div class="header-customer-txt">
+                <p class="bold">Mon compte</p>
+                <?php $_loggedin = $block->getLayout()->createBlock('Magento\Customer\Block\Account\AuthorizationLink')->isLoggedIn() ?>
+                <?php if( $_loggedin ) : ?>
+                  <p class="little">Connecté</p>
+                <?php else: ?>
+                  <p class="little">Identifiez-vous</p>
+                <?php endif; ?>
+            </div>
+            <button type="button"
+                    class="action switch"
+                    tabindex="-1"
+                    data-action="customer-menu-toggle">
+                <span><?php /* @escapeNotVerified */
+                    echo __('Change') ?></span>
+            </button>
+        </span>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "customer": {
+                            "component": "Magento_Customer/js/view/customer"
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
+
+        </script>
+        <?php if ($block->getChildHtml()): ?>
+            <div class="customer-menu" data-target="dropdown" aria-hidden="false">
+                <?php echo $block->getChildHtml(); ?>
+            </div>
+        <?php endif; ?>
+    </li>
+
+</div>
+<div class="header-customer desktop">
+    <li class="customer-welcome">
+        <span class="customer-name">
+            <i class="fas fa-user"></i>
+            <div class="header-customer-txt">
+                <p class="bold">Mon compte</p>
+                <?php $_loggedin = $block->getLayout()->createBlock('Magento\Customer\Block\Account\AuthorizationLink')->isLoggedIn() ?>
+                <?php if( $_loggedin ) : ?>
+                    <p class="little">Connecté</p>
+                <?php else: ?>
+                    <p class="little">Identifiez-vous</p>
+                <?php endif; ?>
+            </div>
+            <button type="button"
+                    class="action switch"
+                    tabindex="-1"
+                    data-action="customer-menu-toggle">
+                <span><?php /* @escapeNotVerified */
+                    echo __('Change') ?></span>
+            </button>
+        </span>
+
+        <?php if ($block->getChildHtml()): ?>
+            <div class="customer-menu" data-target="dropdown">
+                <?php echo $block->getChildHtml(); ?>
+            </div>
+        <?php endif; ?>
+    </li>
+</div>

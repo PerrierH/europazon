@@ -1,0 +1,62 @@
+<?php
+/**
+ * @var Magezon\ScrollToTop\Block\Adminhtml\ $block
+ */
+$helper = $this->helper('\Magezon\ScrollToTop\Helper\Data');
+?>
+
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        function buttonStatus() {
+            height = $(document).scrollTop();
+            distanceByPercent = $(document).height() * <?= $helper->getScrollDistancePercent()?>;
+            distance = 100;
+            switch (<?= $helper->getDistanceType() ?>) {
+                case 1:
+                    distance = <?= $helper->getScrollDistancePixel() ?>;
+                    break;
+                case 2:
+                    distance = distanceByPercent
+                    if (<?= $helper->getScrollDistancePercent()?> > 0.5) {
+                        distance = distance -  $(window).height();
+                    };
+                    break;
+                    
+                default: distance = 100;
+                    break;
+            }
+
+            if (height >= distance) {
+                $("#scroll-to-top").attr('class' , 'stt-button animate__animated <?= $helper->getAnimationIn() ?>');
+                $('#scroll-to-top').css('visibility', 'visible');
+            } else {
+                $("#scroll-to-top").attr('class' , 'stt-button animate__animated <?= $helper->getAnimationOut() ?>');
+                if ("<?= $helper->getAnimationOut() ?>" == "animate__none") {
+                    $('#scroll-to-top').css('visibility', 'hidden');
+                }
+            }
+            
+            if (<?= $helper->getHideOnSmallDevice() ?> == 1) {
+                if ($(window).width() >= <?= $helper->getSmallDeviceWidth() ?>) {
+                    $('#scroll-to-top').css('visibility', 'visible');
+                } else {
+                    $('#scroll-to-top').css('visibility', 'hidden');
+                }
+            }
+        }
+
+        $("#scroll-to-top").click(function (event) {
+            $("html, body").stop().animate({
+                scrollTop: 0
+            }, <?= $helper->getScrollSpeed() ?>);
+        });
+
+        $(window).scroll(function () {
+            buttonStatus();
+        });
+
+        $(document).ready(function () {
+            buttonStatus();
+        });
+    })
+</script>

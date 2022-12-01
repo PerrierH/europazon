@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html>
+
+<body>
+  <?php
+
+  $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+  $cart = $objectManager->get('\Magento\Checkout\Model\Cart');
+
+  $total = $cart->getQuote()->getGrandTotal();
+
+  ?>
+
+  <div class="oney_checkout_global">
+    <div class="oney_checkout">
+
+      <div class="oney_marketing">
+
+        <img alt="oney" src="<?php echo $this->getViewFileUrl('Weglio_OneyMarketing::images/logo-oney-3xpayant.png'); ?>" />
+
+        <p>Par <span>carte bancaire</span></p>
+
+        <button class="oney_simuler" onclick="showCheckout3x()">
+
+          Simuler
+
+        </button>
+
+      </div>
+
+      <div id="checkoutPlaceholder3x"></div>
+
+    </div>
+
+    <div class="oney_checkout">
+
+      <div class="oney_marketing">
+
+        <img alt="oney" src="<?php echo $this->getViewFileUrl('Weglio_OneyMarketing::images/logo-oney-4xpayant.png'); ?>" />
+
+        <p>Par <span>carte bancaire</span></p>
+
+        <button class="oney_simuler" id="oney_simuler" onclick="showCheckout4x()">
+
+          Simuler
+
+        </button>
+
+      </div>
+
+      <div id="checkoutPlaceholder4x"></div>
+
+    </div>
+
+  </div>
+
+    <script type="text/javascript" src="https://assets-staging.oney.io/build/loader.min.js"></script>
+
+    <script>
+      var x = 0;
+        function showCheckout4x () {
+
+            var productPriceOney = <?php echo json_encode($total); ?>;
+
+            let options = {
+
+                country: "FR",
+
+                language: "FR",
+
+                merchant_guid: "c0f89bccb04c475186ec49a7a4e0526e",
+
+                payment_amount: productPriceOney,
+
+                free_bts: true,
+
+                business_transaction_code: "W4999",
+
+                filter_by: "business_transaction_code",
+
+                checkout_placeholder: "#checkoutPlaceholder4x"
+
+            };
+
+
+
+            options.errorCallback = function (status, response) {
+
+                console.log(status + " - " + response);
+
+            };
+
+            if (x == 0) {
+              document.getElementById("checkoutPlaceholder4x").classList.add("show");
+              document.getElementById("checkoutPlaceholder4x").classList.remove("hide");
+              x = 1;
+            } else {
+              document.getElementById("checkoutPlaceholder4x").classList.remove("show");
+              document.getElementById("checkoutPlaceholder4x").classList.add("hide");
+              x = 0;
+            }
+
+              loadOneyWidget(function () {
+
+                  oneyMerchantApp.loadCheckoutSection({ options });
+
+              });
+
+        }
+
+
+
+        function showCheckout3x () {
+
+            var productPriceOney = <?php echo json_encode($total); ?>;
+
+            let options = {
+
+                country: "FR",
+
+                language: "FR",
+
+                merchant_guid: "c0f89bccb04c475186ec49a7a4e0526e",
+
+                payment_amount: productPriceOney,
+
+                free_bts: true,
+
+                business_transaction_code: "W3999",
+
+                filter_by: "business_transaction_code",
+
+                checkout_placeholder: "#checkoutPlaceholder3x"
+
+            };
+
+
+
+            options.errorCallback = function (status, response) {
+
+                console.log(status + " - " + response);
+
+            };
+
+
+            if (x == 0) {
+              document.getElementById("checkoutPlaceholder3x").classList.add("show");
+              document.getElementById("checkoutPlaceholder3x").classList.remove("hide");
+              x = 1;
+            } else {
+              document.getElementById("checkoutPlaceholder3x").classList.remove("show");
+              document.getElementById("checkoutPlaceholder3x").classList.add("hide");
+              x = 0;
+            }
+            loadOneyWidget(function () {
+
+                oneyMerchantApp.loadCheckoutSection({ options });
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

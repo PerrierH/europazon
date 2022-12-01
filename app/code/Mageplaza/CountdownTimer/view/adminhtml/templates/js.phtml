@@ -1,0 +1,190 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_CountdownTimer
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+const STYLE = [
+    'style1' => [
+        'title_color'   => '#eb5202',
+        'message_color' => '#eb5202',
+        'number_color'  => '#eb5202',
+        'text_color'    => '#eb5202',
+        'clock_color'   => '',
+    ],
+    'style2' => [
+        'title_color'   => '#000000',
+        'message_color' => '#000000',
+        'number_color'  => '#ffffff',
+        'text_color'    => '#ffffff',
+        'clock_color'   => '#846add',
+    ],
+    'style3' => [
+        'title_color'   => '#000000',
+        'message_color' => '#000000',
+        'number_color'  => '#ffffff',
+        'text_color'    => '#ffffff',
+        'clock_color'   => '#333333',
+    ],
+    'style4' => [
+        'title_color'   => '#000000',
+        'message_color' => '#000000',
+        'number_color'  => '#ffffff',
+        'text_color'    => '#ffffff',
+        'clock_color'   => '#00BF96',
+    ],
+    'style5' => [
+        'title_color'   => '#000000',
+        'message_color' => '#000000',
+        'number_color'  => '#111',
+        'text_color'    => '#f47321',
+        'clock_color'   => '#222',
+    ],
+];
+$style = Mageplaza\CountdownTimer\Helper\Data::jsonEncode(STYLE);
+?>
+<script type="text/javascript">
+    require(["jquery"], function ($) {
+        "use strict";
+        $(function () {
+            var applyProduct              = $("#mpcountdowntimer_rule_type"),
+                tabCondition              = $('#mpcountdowntimer_rules_edit_tabs_condition'),
+                field_position            = $(".field-position"),
+                enableBefore              = $("#mpcountdowntimer_enable_before_start"),
+                enableRunning             = $("#mpcountdowntimer_enable_while_running"),
+                clockStyleBefore          = $("#mpcountdowntimer_clock_style_before"),
+                clockStyleRunning         = $("#mpcountdowntimer_clock_style_running"),
+                field_clock_color_before  = $(".field-clock_color_before"),
+                field_clock_color_running = $(".field-clock_color_running");
+            depends(<?= /* @noEscape */ $style ?>);
+
+            function depends (style) {
+                applyProduct.on("change", function () {
+                    if ($(this).val() === '1') {
+                        tabCondition.show();
+                    } else {
+                        tabCondition.hide();
+                    }
+
+                    if ($(this).val() === '3') {
+                        field_position.hide();
+                    } else {
+                        field_position.show();
+                    }
+                });
+
+                enableBefore.on("change", function () {
+                    if ($(this).val() === '1') {
+                        if (clockStyleBefore.val() !== 'style1') {
+                            field_clock_color_before.show();
+                        } else {
+                            field_clock_color_before.hide();
+                        }
+                        clockStyleBefore.on("change", function () {
+                            switch ($(this).val()){
+                                case 'style1':
+                                    field_clock_color_before.hide();
+                                    setFieldBeforeCss(style.style1);
+                                    break;
+                                case 'style2':
+                                    field_clock_color_before.show();
+                                    setFieldBeforeCss(style.style2);
+                                    break;
+                                case 'style3':
+                                    field_clock_color_before.show();
+                                    setFieldBeforeCss(style.style3);
+                                    break;
+                                case 'style4':
+                                    field_clock_color_before.show();
+                                    setFieldBeforeCss(style.style4);
+                                    break;
+                                case 'style5':
+                                    field_clock_color_before.show();
+                                    setFieldBeforeCss(style.style5);
+                                    break;
+                            }
+                        });
+                    } else {
+                        field_clock_color_before.hide();
+                    }
+                });
+
+                enableRunning.on("change", function () {
+                    if ($(this).val() === '1') {
+                        if (clockStyleRunning.val() !== 'style1') {
+                            field_clock_color_running.show();
+                        } else {
+                            field_clock_color_running.hide();
+                        }
+                        clockStyleRunning.on("change", function () {
+                            switch ($(this).val()){
+                                case 'style1':
+                                    field_clock_color_running.hide();
+                                    setFieldRunningCss(style.style1);
+                                    break;
+                                case 'style2':
+                                    field_clock_color_running.show();
+                                    setFieldRunningCss(style.style2);
+                                    break;
+                                case 'style3':
+                                    field_clock_color_running.show();
+                                    setFieldRunningCss(style.style3);
+                                    break;
+                                case 'style4':
+                                    field_clock_color_running.show();
+                                    setFieldRunningCss(style.style4);
+                                    break;
+                                case 'style5':
+                                    field_clock_color_running.show();
+                                    setFieldRunningCss(style.style5);
+                                    break;
+                            }
+                        });
+                    } else {
+                        field_clock_color_running.hide();
+                    }
+                });
+
+                applyProduct.trigger("change");
+                enableBefore.trigger("change");
+                enableRunning.trigger("change");
+            }
+
+            function setFieldBeforeCss (style) {
+                processColorField($('#mpcountdowntimer_title_color_before'), style.title_color);
+                processColorField($('#mpcountdowntimer_message_color_before'), style.message_color);
+                processColorField($('#mpcountdowntimer_number_color_before'), style.number_color);
+                processColorField($('#mpcountdowntimer_text_color_before'), style.text_color);
+                processColorField($('#mpcountdowntimer_clock_color_before'), style.clock_color);
+            }
+
+            function setFieldRunningCss (style) {
+                processColorField($('#mpcountdowntimer_title_color_running'), style.title_color);
+                processColorField($('#mpcountdowntimer_message_color_running'), style.message_color);
+                processColorField($('#mpcountdowntimer_number_color_running'), style.number_color);
+                processColorField($('#mpcountdowntimer_text_color_running'), style.text_color);
+                processColorField($('#mpcountdowntimer_clock_color_running'), style.clock_color);
+            }
+
+            function processColorField (element, style) {
+                element.css('background-color', style);
+                element.val(style).trigger("change");
+            }
+        });
+    });
+</script>

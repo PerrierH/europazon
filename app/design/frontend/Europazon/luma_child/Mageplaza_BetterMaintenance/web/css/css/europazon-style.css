@@ -1,0 +1,43 @@
+/*
+Theme Name: Blog Europazon
+Theme URI: https://themes.muffingroup.com/betheme
+Author: Muffin group
+Author URI: https://muffingroup.com
+Description: Child Theme for Betheme
+Template: betheme
+Version: 1.6.2
+*/
+
+/* BOUTONS */
+    .vc_btn3.vc_btn3-style-custom {
+    background-image: none;
+}
+
+/* BLANC */
+.blanc, .blanc p, .blanc span, .blanc h1, .blanc h2, .blanc h3, .blanc h4, .blanc ul li, .blanc blockquote {
+  color:#FFF;
+}
+
+/* TOP BAR */
+
+.header-classic #Action_bar .contact_details li, .header-classic #Action_bar .social, .header-classic #Action_bar .social-menu {
+    padding: 10px 0;
+}
+
+#Content, .vc_row-has-fill>.vc_column_container>.vc_column-inner {
+    padding-top: 0px;
+}
+
+#Top_bar .menu > li > a span:not(.description) {
+    padding: 0 15px;
+}
+
+/* ORDINATEUR */
+
+@media screen and (min-width: 900px) {
+    .slogan { 
+        font-size: 20px!important;
+     }
+
+}
+/*This file was exported by "Export WP Page to Static HTML" plugin which created by ReCorp (https://myrecorp.com) */

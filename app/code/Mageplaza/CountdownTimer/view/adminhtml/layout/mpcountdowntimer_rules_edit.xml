@@ -1,0 +1,40 @@
+<?xml version="1.0"?><!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_CountdownTimer
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="jquery/colorpicker/css/colorpicker.css"/>
+        <script src="Mageplaza_Core::js/jscolor.min.js"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Mageplaza\CountdownTimer\Block\Adminhtml\Rules\Edit" name="mpcountdowntimer_rules_edit"/>
+            <block class="Magento\Framework\View\Element\Template" name="mpcountdowntimer_rules_edit_js" template="Mageplaza_CountdownTimer::js.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Mageplaza\CountdownTimer\Block\Adminhtml\Rules\Edit\Tabs" name="mpcountdowntimer_rules_edit_tabs">
+                <block class="Mageplaza\CountdownTimer\Block\Adminhtml\Rules\Edit\Tab\General" name="mpcountdowntimer_rules_edit_general" as="general"/>
+                <block class="Mageplaza\CountdownTimer\Block\Adminhtml\Rules\Edit\Tab\Condition" name="mpcountdowntimer_rules_edit_condition" as="condition"/>
+                <block class="Mageplaza\CountdownTimer\Block\Adminhtml\Rules\Edit\Tab\Display" name="mpcountdowntimer_rules_edit_display" as="display"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

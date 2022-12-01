@@ -1,0 +1,76 @@
+div.widget.block.block-static-block{
+    display: none;
+}s
+header.page-header {
+    background: #f5f6f7 !important;
+}
+div.header.content {
+    max-width: 1280px !important;
+}
+
+.opc-progress-bar-item._active:before {
+    background: #0d368b!important;
+    border-color: #0d368b!important;
+}
+.opc-progress-bar-item._active > span:after {
+    border-color: #0d368b!important;
+}
+.opc-progress-bar-item._active > span:before {
+    background: #0d368b!important;
+    border-color: #0d368b!important;
+}
+
+.opc-wrapper .shipping-address-item.selected-item {
+    border-color: #f0be38!important;
+}
+.opc-wrapper .shipping-address-item.selected-item:after {
+	background: #f0be38!important;
+}
+
+.oney_checkout .hide{
+  display: none;
+}
+.oney_checkout .show{
+  display: block;
+}
+.opc-payment-additional.discount-code{
+  display: none;
+}
+.opc-wrapper .form-login {
+    border-bottom: unset!important;
+}
+
+.checkout-payment-method .payment-method-billing-address .step-title,
+.checkout-payment-method #checkout-payment-method-load .step-title{
+    border-bottom: 1px solid #cccccc!important;
+    margin-bottom: 15px!important;
+}
+
+#login #checkout-step-title  aside.modal-custom.authentication-dropdown.custom-slide form .primary button.action.action-login.secondary {
+    color: white;
+}
+
+#login #checkout-step-title .authentication-wrapper aside.modal-custom.authentication-dropdown.custom-slide._show {
+    width: 400px;
+}
+#login #checkout-step-title .authentication-wrapper {
+    width: unset;
+}
+#login #checkout-step-title .authentication-wrapper .action.action-auth-toggle{
+    float: right;
+    background: #eeeeee;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    color: black;
+    font-weight: 500;
+    padding: 7px 15px;
+}
+
+#login div#checkout-step-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+#login .actions-toolbar .primary button > span {
+    font-weight: 500;
+}

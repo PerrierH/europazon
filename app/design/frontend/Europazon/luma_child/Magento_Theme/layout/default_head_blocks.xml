@@ -1,0 +1,9 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link rel="stylesheet" src="/css/custom.css" type="text/css"/>
+        <link src_type="url" src="//fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css"  />
+        <css src="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" src_type="url"/>
+        <script src="js/custom.js" />
+    </head>
+</page>

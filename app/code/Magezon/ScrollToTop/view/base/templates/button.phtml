@@ -1,0 +1,46 @@
+<?php
+/**
+ * @var Magezon\ScrollToTop\Block\Adminhtml\ $block
+ */
+$helper = $this->helper('\Magezon\ScrollToTop\Helper\Data');
+?>
+
+<style>
+    .stt-button,
+    .stt-icon,
+    .stt-image {
+        width: <?= $helper->getButttonSize() ?>px;
+        height: <?= $helper->getButttonSize() ?>px;
+    }
+    .stt-button {
+        <?= $helper->getStylePosition() ?>
+    }
+
+    .stt-text {
+        background-color: <?= $helper->getBackGroundColor() ?>;
+        color: <?= $helper->getTextColor() ?>;
+        font-size: <?= $helper->getTextSize() ?>px;
+    }
+
+    .stt-button:hover .stt-text {
+        background-color: <?= $helper->getBackGroundHover() ?>;
+        color: <?= $helper->getTextColorHover() ?>;
+    }
+
+    .stt-button:hover .stt-icon {
+        background-color: <?= $helper->getBackGroundHover() ?>;
+        color: <?= $helper->getIconColorHover() ?>
+    }
+
+    .stt-icon {
+        background-color: <?= $helper->getBackGroundColor() ?>;
+        font-size: <?= $helper->getButttonSize() ?>px;
+        color: <?= $helper->getIconColor() ?>;
+    }
+
+    <?= $helper->getCustomCss() ?>
+</style>
+
+<div class="stt-button animate__animated" id="scroll-to-top">
+    <?= $helper->getDisplayOnPage() ?>
+</div>

@@ -1,0 +1,82 @@
+<?php
+
+?>
+	<script>
+		require(['jquery', 'owl.carousel', 'domReady!'], function ($) {
+			'use strict';
+			$('.owl-carousel').owlCarousel({
+				loop: false,
+				margin: 10,
+				items:10,
+				nav: true,
+				responsive: {
+					0: {
+						items: 1
+					},
+					600: {
+						items: 3
+					},
+					1000: {
+						items: 5
+					}
+				}
+			})
+		});
+	</script>
+	<?php
+	/**
+	 * @var $block \Weglio\ProductSliderProductView\Block\ProductSliderProductView
+	 */
+	if ($block->getCurrentCategory()) :
+
+		$category = $block->getCurrentCategory()->getId();
+		$categoryProducts = $block->getProductCollectionByCategories($category);
+		$categoryProducts->getSelect()->limit(25);
+		$countProduct = count($categoryProducts);
+		if ($countProduct > 1){ ?>
+
+			<h2><strong>Découvrez aussi</strong></h2>
+
+			<div class="owl-carousel owl-theme product">
+				<?php
+
+				/** @var \Magento\Catalog\Model\Product $product */
+				foreach ($categoryProducts as $product) : ?>
+					<div class="seller product">
+						<?php
+						$image_url = $block->imageHelperObj()->init($product, 'product_page_image_small')
+							->setImageFile($product->getFile())
+							->resize($this->getProductimagewidth(), $this->getProductimageheight())
+							->getUrl();
+						?>
+						<?php
+						$product_name = $product->getName();
+						$truncated = (strlen($product_name) > 35) ? substr($product_name, 0, 35) . '...' : $product_name;
+
+						?>
+						<a href="<?php echo $product->getProductUrl() ?>">
+							<img class="product seller" src="<?php echo $image_url; ?>"
+								 alt="<?php echo $this->escapeHtml($product->getName()) ?>"/>
+						</a>
+						<a href="<?php  echo $product->getProductUrl() ?>" class="product_name_product" >
+							<?= $truncated ?>
+						</a>
+						<p class="slider_product_price"><?= $product->getFinalPrice() ?> €</p>
+						<?php if ($product->isSaleable()) : ?>
+							<a href="<?php  echo $product->getProductUrl() ?>">
+								<button class="seeproduct">
+									Voir le produit
+								</button>
+							</a>
+						<?php else : ?>
+							<?php if ($product->getIsSalable()) : ?>
+								<div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>
+							<?php else : ?>
+								<div class="stock unavailable"><span><?= $block->escapeHtml(__('Out of stock')) ?></span></div>
+							<?php endif; ?>
+						<?php endif; ?>
+					</div>
+				<?php endforeach; ?>
+			</div><?php
+		}
+	endif;

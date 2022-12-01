@@ -1,0 +1,232 @@
+<?php
+/**
+ * @var Magezon\ScrollToTop\Block\Adminhtml\ $block
+ */
+$helper = $this->helper('\Magezon\ScrollToTop\Helper\Data');
+?>
+<script type="text/javascript">
+    require(['jquery', 'Magento_Ui/js/lib/validation/validator'], function ($) {
+        // bypass range validator of magento without check : always true
+        $.validator.methods.range = function () {
+            return true;
+        }
+
+        function animationStatus() {
+            height = $(document).scrollTop();
+            percent = $('#scroll_to_top_display_animations_scroll_distance_percent').val();
+            pixel = $('#scroll_to_top_display_animations_scroll_distance_pixel').val();
+            distanceByPercent = $(document).height() * (percent/100);
+            distance = 100;
+            animationIn = 'animate__' + $('#scroll_to_top_display_animations_animation_in').val();
+            animationOut = 'animate__' + $('#scroll_to_top_display_animations_animation_out').val();
+            switch ($('#scroll_to_top_display_animations_distance_type').val()) {
+                case "1":
+                    distance = pixel;
+                    break;
+                case "2":
+                    distance = distanceByPercent
+                    if (percent > 50) {
+                        distance = distance -  $(window).height();
+                    };
+                    break;
+                    
+                default: distance = 100;
+                    break;
+            }
+            if (height >= distance) {
+                $("#scroll-to-top").attr('class' , 'stt-button animate__animated ' + animationIn);
+                $('#scroll-to-top').css('visibility', 'visible');
+            } else {
+                $("#scroll-to-top").attr('class' , 'stt-button animate__animated ' + animationOut);
+                if (animationOut == 'animate__none') {
+                    $('#scroll-to-top').css('visibility', 'hidden');
+                }
+            }
+
+            // hide on small device
+            if ($('#scroll_to_top_general_hide_on_small_device').val() == 1) {
+                if ($(window).width() >= $('#scroll_to_top_general_small_device_width').val()) {
+                    $('#scroll-to-top').css('visibility', 'visible');
+                } else {
+                    $('#scroll-to-top').css('visibility', 'hidden');
+                }
+            }
+        }
+
+        $("#scroll-to-top").click(function (event) {
+            speedtype = $('#scroll_to_top_display_animations_speed_type').val();
+            custom = $('#scroll_to_top_display_animations_scroll_speed_custom').val();
+            $("html, body").stop().animate({
+                scrollTop: 0
+            }, speedtype == 'custom' ? parseInt(custom) : '"' + speedtype + '"');
+        });
+
+        $(window).scroll(function () {
+            animationStatus();
+        });
+
+        $(document).ready(function () {
+            animationStatus();
+        });
+
+        //remove border of design/custom text || image || icon by using closest()
+        function removeBorder() {
+            $('#scroll_to_top_display_image').closest('.section-config').css('border-bottom', '0');
+            $('#scroll_to_top_display_text').closest('.section-config').css('border-bottom', '0');
+            $('#scroll_to_top_display_icon').closest('.section-config').css('border-bottom', '0');
+            $('#scroll_to_top_display_animations').closest('.section-config').css('border-bottom', '0');
+        }
+        
+        function getTextStatus() {
+            $('.stt-text').css('font-size', btTextSize + 'px');
+            $('.stt-text').css('color', btTextColor);
+            $('.stt-text').css('background-color', bgcolor);
+            $('.stt-text').text(btText);
+
+            $('.stt-text').hover(function () {
+                $(this).css({
+                    'background': bgColorHover,
+                    'color': btTextColorHover,
+                });
+            }, function () {
+                $(this).css({
+                    'background': bgcolor,
+                    'color': btTextColor,
+                });
+            });
+        };
+
+        function getImageStatus(){
+            $('.stt-image').css('width', btSize);
+            $('.stt-image').css('height', btSize);
+        };
+
+        function getIconStatus() {
+            $('.stt-icon').css('color', btIconColor);
+            $('.stt-icon').css('background-color', bgcolor);
+            $('.stt-icon').css('width', btSize);
+            $('.stt-icon').css('height', btSize);
+            $('.stt-icon').css('font-size', btSize + 'px');
+            $('.stt-icon').hover(function () {
+                $(this).css({
+                    'background': bgColorHover,
+                    'color': btIconColorHover,
+                });
+            }, function () {
+                $('.stt-icon').css({
+                    'background': bgcolor,
+                    'color': btIconColor,
+                });
+            });
+        };
+
+        $(document).on('input','#scroll_to_top_display_display_type,#scroll_to_top_display_text_text_size-elem,#scroll_to_top_position_margin_y-elem,#scroll_to_top_position_margin_x-elem,#scroll_to_top_display_image_image_type,#scroll_to_top_display_displayType,#scroll_to_top_image_upload_image,#scroll_to_top_general_livePreview,#scroll_to_top_display_background_color,#scroll_to_top_display_background_color_hover,#scroll_to_top_display_resize_button-elem,#scroll_to_top_display_text_text_on_button,#scroll_to_top_display_text_text_color,#scroll_to_top_display_text_text_color_hover,#scroll_to_top_display_image_image_url,#scroll_to_top_display_image_image_alt,#scroll_to_top_display_image_upload_image_image,#scroll_to_top_image_image_sample,#scroll_to_top_display_icon_icon_color,#scroll_to_top_display_icon_icon_color_hover,#scroll_to_top_icon_marker_icon,#scroll_to_top_position_button_position,.slider,#scroll_to_top_general_css_field,#iconSelected,#scroll_to_top_display_animations_animation_in,#scroll_to_top_display_animations_animation_out',function (e) {
+            
+            bgcolor = $('#scroll_to_top_display_background_color').val();
+            bgColorHover = $('#scroll_to_top_display_background_color_hover').val();
+            btSize = $('#scroll_to_top_display_resize_button-elem').val();
+            btText = $('#scroll_to_top_display_text_text_on_button').val();
+            btTextSize = $('#scroll_to_top_display_text_text_size-elem').val();
+            btTextColor = $('#scroll_to_top_display_text_text_color').val();
+            btTextColorHover = $('#scroll_to_top_display_text_text_color_hover').val();
+            btIconColor = $('#scroll_to_top_display_icon_icon_color').val();
+            btIconColorHover = $('#scroll_to_top_display_icon_icon_color_hover').val();
+            btPosition = $('#scroll_to_top_position_button_position').val();
+            marginX = $('#scroll_to_top_position_margin_x-elem').val();
+            marginY = $('#scroll_to_top_position_margin_y-elem').val();
+            customCss = $('#scroll_to_top_general_css_field').val();
+            displayType = '';
+
+            // get image display
+            switch ($('#scroll_to_top_display_image_image_type').val()) { 
+                case "0":
+                    displayType = $('#scroll_to_top_display_image_image_url').val();
+                    break;
+                case "1":
+                    displayType = $('#scroll_to_top_display_image_upload_image_image').attr('src');
+                    break;
+                case "2":
+                    displayType = $('#imageSelected').val();
+                    break;
+            };
+
+            //get button display
+            switch ($('#scroll_to_top_display_display_type').val()) { 
+                case "0":
+                    $('#scroll-to-top').html('<i class="' + $('#iconSelected').val() +
+                        ' stt-icon"></i>');
+                    break;
+                case "1":
+                    $('#scroll-to-top').html('<div class="stt-text">' + $(
+                        '#scroll_to_top_display_text_text_on_button').val() + '</div>');
+                    break;
+                case "2":
+                    $('#scroll-to-top').html('<img class="stt-image" src="' + displayType +
+                        '" alt="' + $('#scroll_to_top_display_image_image_alt').val() + '">');
+                    break;
+            }
+            // update change for text,image or icon
+            getTextStatus();
+            getIconStatus();
+            getImageStatus();
+
+            $('.stt-button').css('width', btSize);
+            $('.stt-button').css('height', btSize);
+            $('.stt-button').css({
+                "left": btPosition   == 3 || btPosition == 1 ? marginX + "px" : "initial",  //set button position 
+                "right": btPosition  == 0 || btPosition == 2 ? marginX + "px" : "initial",
+                "top": btPosition    == 2 || btPosition == 3 ? marginY + "px" : "initial",
+                "bottom": btPosition == 0 || btPosition == 1 ? marginY + "px" : "initial",
+            }); 
+        });
+
+         //change icon when choose one from sample
+        $('.stt-marker-icon-wrapper').on('click', function (e) {
+            $('#scroll-to-top').html('<i class="' + $('#iconSelected').val() + ' stt-icon"></i>');
+            getIconStatus();
+        });
+
+         //change image when choose one from sample
+        $('.stt-marker-image-wrapper').on('click', function (e) {
+            $('#scroll-to-top').html('<img class="stt-image" src="' + $('#imageSelected').val() + '" alt="' + $('#scroll_to_top_display_image_image_alt').val() + '">');
+            getImageStatus();
+        });
+
+        //change animation in
+        $('#scroll_to_top_display_animations_animation_in').on('change', function (e) { 
+            animationIn = 'animate__' + $('#scroll_to_top_display_animations_animation_in').val();
+            $('#scroll-to-top').attr('class', 'stt-button animate__animated ' + animationIn);
+        });
+
+        //change animation out
+        $('#scroll_to_top_display_animations_animation_out').on('change', function (e) { 
+            animationOut = 'animate__' + $('#scroll_to_top_display_animations_animation_out').val();
+            animationIn = 'animate__' + $('#scroll_to_top_display_animations_animation_in').val();
+            $('#scroll-to-top').attr('class', 'stt-button animate__animated ' + animationOut);
+            setTimeout(function() {
+                $('#scroll-to-top').attr('class', 'stt-button animate__animated ' + animationIn);
+             }, 2000);
+        });
+
+        //remove all bottom border of each group when disable and show again when enable
+        $('#scroll_to_top_general_enable').on('change', function (e) {
+            if ($('#scroll_to_top_general_enable').val() == 0) {
+                $('.section-config').css('border-bottom', '0');
+            } else {
+                $('.section-config').css('border-bottom', '1px solid #cccccc');
+                removeBorder();
+            }
+        });
+
+        // auto remove border when disable,incase module disable then reload page border still show up
+        if ($('#scroll_to_top_general_enable').val() == 0) {
+                $('.section-config').css('border-bottom', '0');
+            }
+        removeBorder();
+
+        //live privew with scroll distance
+        $(document).on('input', '#scroll_to_top_display_animations_distance_type, #scroll_to_top_display_animations_scroll_distance_pixel, #scroll_to_top_display_animations_scroll_distance_percent, #scroll_to_top_general_hide_on_small_device, #scroll_to_top_general_small_device_width', function (e) {
+            animationStatus();              
+        })
+    });
+</script>

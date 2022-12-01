@@ -1,0 +1,22 @@
+.action.primary.button.mp-open-custom-form {
+    background: unset;
+    border: unset;
+    color: #666666;
+    padding-top: 12px;
+    float: right;
+}
+@media only screen and (min-width: 767px) {
+  .bottom_button_product {
+      width: 380px;
+  }
+  div.page-wrapper footer.page-footer {
+    margin-top: auto!important;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .mp-custom-form {
+      float: right;
+      margin-top: 0px;
+      margin-bottom: 10px;
+  }
+}

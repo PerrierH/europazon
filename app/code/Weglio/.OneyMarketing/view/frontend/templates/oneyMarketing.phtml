@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://assets-staging.oney.io/build/loader.min.js"></script>
+</head>
+<body>
+    <div class="oney_marketing">
+      <img alt="oney" src="<?php echo $this->getViewFileUrl('Weglio_OneyMarketing::images/pastille-payezen3x4xpayant.png'); ?>" />
+      <p>Par <span>carte bancaire</span></p>
+      <button class="oney_simuler" onclick="showOneyWidget()">
+        Simuler
+      </button>
+      <?php
+      $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+      $registry = $objectManager->get('\Magento\Framework\Registry');
+      $currentProduct = $registry->registry('current_product');
+      $productPriceOney = $currentProduct->getFinalPrice();
+      ?>
+    </div>
+    <script>
+        function showOneyWidget () {
+            var productPriceOney = <?php echo json_encode($productPriceOney); ?>;
+            let options = {
+                country: "FR",
+                language: "FR",
+                merchant_guid: "c0f89bccb04c475186ec49a7a4e0526e",
+                payment_amount: productPriceOney,
+                free_bts: true,
+                filter_by : "filters",
+                filters: [
+                    {
+                        payment_mode: "3x",
+                        is_free: false
+                    },
+                    {
+                        payment_mode: "4x",
+                        is_free: false
+                    }
+                ]
+            };
+
+            loadOneyWidget(function () {
+                oneyMerchantApp.loadSimulationPopin({ options });
+            });
+        }
+    </script>
+</body>
+</html>

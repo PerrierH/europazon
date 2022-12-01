@@ -1,0 +1,95 @@
+@media only screen and (max-width: 768px) {
+    p.slider_product_price {
+        font-size: 22px !important;
+        color: #0D368B !important;
+        font-weight: 800 !important;
+    }
+}
+@media only screen and (min-width: 768px) {
+    div.seller.product {
+        height: 370px;
+    }
+    button.action.tocart.primary {
+        margin-left: 20px;
+        background-color: var(--main-bg-color);
+        border-radius: 5px;
+    }
+    div.page-bottom .owl-carousel.owl-theme.owl-loaded.owl-drag {
+        margin-bottom: 40px;
+    }
+
+    div.owl-item {
+        display: block;
+        margin-right: 15px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    img.product.seller {
+        width: 80% !important;
+        margin-left: 20px;
+        padding-top: 10px;
+    }
+}
+
+a.product_name_product {
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 25px;
+    color: #061b38;
+    font-weight: 700;
+    height: 40px;
+}
+
+div.seller.product {
+    border-radius: 8px;
+    box-shadow: 4px 4px 6px 0 rgb(0 0 0 / 6%);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+p.slider_product_price {
+    font-size: 28px !important;
+    color: #0D368B !important;
+    font-weight: 600 !important;
+}
+div.seller.product:hover {
+    box-shadow: 6px 6px 8px 0 rgb(0 0 0 / 12%);
+}
+
+button.seeproduct{
+    background-color: var(--main-bg-color);
+    border-radius: 5px;
+    color: white;
+}
+button.seeproduct:hover{
+    background: #120e8a;
+}
+
+h4 {
+    color: var(--text-color);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media only screen and (min-width: 767px) {
+
+  .owl-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: -275px!important;
+      margin-bottom: 190px;
+      margin-right: -30px;
+      margin-left: -30px;
+  }
+
+  .page-bottom .owl-carousel .owl-nav button.owl-prev, .page-bottom .owl-carousel .owl-nav button.owl-next {
+      z-index: 200;
+      height: 60px;
+  }
+  .page-bottom .owl-carousel .owl-nav button.owl-prev span, .page-bottom .owl-carousel .owl-nav button.owl-next span {
+    font-weight: 500;
+    font-size: 20px;
+}
+}

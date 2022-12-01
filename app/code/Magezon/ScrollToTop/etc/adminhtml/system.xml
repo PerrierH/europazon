@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://www.magezon.com/license.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_ScrollToTop
+ * @copyright Copyright (C) 2021 Magezon (https://www.magezon.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="scroll_to_top" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1"
+            showInStore="1">
+            <label>Scroll To Top</label>
+            <tab>magezon</tab>
+            <resource>Magezon_ScrollToTop::settings</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                showInStore="1">
+                <label>Display</label>
+                <field id="current_version" translate="label" type="label" sortOrder="1" showInDefault="1" showInWebsite="1"
+                    showInStore="1">
+                    <label>Current Version</label>
+                </field>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                    showInStore="1">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="hide_on_small_device" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                    showInStore="1">
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <label>Hide On Small Devices</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Button will be hidden on small device when the width matches</comment>
+                </field>
+                 <field id="small_device_width" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Small Device Max Width (px)</label>
+                        <depends>
+                            <field id="enable">1</field>
+                            <field id="hide_on_small_device">1</field>
+                        </depends>
+                        <validate>validate-number no-whitespace validate-select</validate>
+                        <comment>Button will be hidden on devices with smaller or equal width (by pixel)</comment>
+                </field>
+                <field id="display_on_fontend" translate="label" type="select" sortOrder="1" showInDefault="1"
+                    showInWebsite="0" showInStore="0">
+                    <label>Display On Frontend Pages</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <source_model>Magezon\ScrollToTop\Model\Config\Source\DisplayOnPages</source_model>
+                </field>
+                <field id="display_on_backend" translate="label" type="select" sortOrder="5" showInDefault="1"
+                    showInWebsite="0" showInStore="0">
+                    <label>Display On Backend Pages</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <source_model>Magezon\ScrollToTop\Model\Config\Source\DisplayOnPages</source_model>
+                </field>
+                <field id="custom_display_backend_pages" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1"
+                    showInStore="1">
+                    <label>Backend</label>
+                    <frontend_model>Magezon\ScrollToTop\Block\Adminhtml\System\Config\Form\Field\CustomDisplayPages</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <depends>
+                        <field id="display_on_backend" separator=",">1,2</field>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="custom_display_pages" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1"
+                    showInStore="1">
+                    <label>Frontend</label>
+                    <frontend_model>Magezon\ScrollToTop\Block\Adminhtml\System\Config\Form\Field\CustomDisplayPages</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="display_on_fontend" separator=",">1,2</field>
+                    </depends>
+                </field>
+                <field id="css_field" translate="label" type="textarea" sortOrder="10" showInDefault="1"
+                    showInWebsite="1" showInStore="1">
+                    <label>Custom CSS</label>
+                    <comment>Add your own CSS code</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="display" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1"
+                showInStore="1">
+                <label>Design</label>
+                <depends>
+                        <field id="scroll_to_top/general/enable">1</field>
+                </depends>
+                <field id="display_type" translate="label" type="select" sortOrder="1" showInDefault="1"
+                    showInWebsite="1" showInStore="1">
+                    <label>Display Type</label>
+                    <source_model>Magezon\ScrollToTop\Model\Config\Source\DisplayType</source_model>
+                </field>
+                <field id="background_color" translate="label comment" sortOrder="80" showInDefault="1"
+                    showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <frontend_model>Magezon\Core\Block\Adminhtml\System\Config\Form\Field\Minicolors</frontend_model>
+                    <depends>
+                        <field id="display_type" separator=",">0,1</field> 
+                    </depends>
+                </field>
+                <field id="background_color_hover" translate="label comment" sortOrder="81" showInDefault="1"
+                    showInWebsite="1" showInStore="1">
+                    <label>Background Color On Hover</label>
+                    <frontend_model>Magezon\Core\Block\Adminhtml\System\Config\Form\Field\Minicolors</frontend_model>
+                    <depends>
+                        <field id="display_type" separator=",">0,1</field>
+                    </depends>
+                </field>
+                <field id="resize_button" translate="label" type="hidden" sortOrder="84" showInDefault="1"
+                    showInWebsite="1" showInStore="1">
+                    <label>Resize Button</label>
+                    <frontend_model>Magezon\ScrollToTop\Block\Adminhtml\System\Config\Form\Field\RangeSlider</frontend_model>
+                </field>
+                <group id="text" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1"
+                    showInStore="1">
+                    <label>Custom Text</label>
+                    <attribute type="expanded">1</attribute>
+                    <depends>
+                        <field id="scroll_to_top/display/display_type">1</field>
+                    </depends>
+                    <field id="text_on_button" translate="label" type="text" sortOrder="83" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Text On Button</label>
+                    </field>
+                    <field id="text_size" translate="label" type="hidden" sortOrder="84" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Text Size</label>
+                        <frontend_model>Magezon\ScrollToTop\Block\Adminhtml\System\Config\Form\Field\RangeSlider</frontend_model>
+                    </field>
+                    <field id="text_color" translate="label comment" sortOrder="84" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Text Color</label>
+                        <frontend_model>Magezon\Core\Block\Adminhtml\System\Config\Form\Field\Minicolors</frontend_model>
+                        <depends>
+                            <field id="enabled">1</field>
+                        </depends>
+                    </field>
+                    <field id="text_color_hover" translate="label comment" sortOrder="85" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Text Color On Hover</label>
+                        <frontend_model>Magezon\Core\Block\Adminhtml\System\Config\Form\Field\Minicolors</frontend_model>
+                    </field>
+                </group>
+                <group id="image" translate="label" type="text" sortOrder="95" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Image</label>
+                    <attribute type="expanded">1</attribute>
+                    <depends>
+                        <field id="scroll_to_top/display/display_type">2</field>
+                    </depends>
+                    <field id="image_type" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Select Type</label>
+                        <source_model>Magezon\ScrollToTop\Model\Config\Source\ImageType</source_model>
+                    </field>
+                    <field id="upload_image" translate="label comment" type="image" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Banner Image</label>
+                        <backend_model>Magezon\ScrollToTop\Model\Config\Backend\Image</backend_model>
+                        <base_url type="media" scope_info="1">scroll_to_top/image</base_url>
+                        <comment model="Magezon\ScrollToTop\Model\Config\Comment\ImageUpload" />
+                        <depends>
+                            <field id="image_type">1</field>
+                        </depends>
+                    </field>
+                    <field id="image_url" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Image URL</label>
+                        <comment>Add URL to get image from online source</comment>
+                        <depends>
+                            <field id="image_type">0</field>
+                        </depends>
+                    </field>
+                    <field id="image_sample" translate="label" sortOrder="23" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Sample</label>
+                        <frontend_model>Magezon\ScrollToTop\Block\Adminhtml\System\Config\Form\Field\ImageSample</frontend_model>
+                        <depends>
+                            <field id="image_type">2</field>
+                        </depends>
+                    </field>
+                    <field id="image_alt" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Image ALT</label>
+                    </field>
+                </group>
+                <group id="icon" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Icon</label>
+                    <attribute type="expanded">1</attribute>
+                    <depends>
+                        <field id="scroll_to_top/display/display_type">0</field>
+                    </depends>
+                    <field id="marker_icon" translate="label" sortOrder="80" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon</label>
+                        <frontend_model>Magezon\ScrollToTop\Block\Adminhtml\System\Config\Form\Field\Icons</frontend_model>
+                    </field>
+                    <field id="icon_color" translate="label comment" sortOrder="84" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon Color</label>
+                        <frontend_model>Magezon\Core\Block\Adminhtml\System\Config\Form\Field\Minicolors</frontend_model>
+                    </field>
+                    <field id="icon_color_hover" translate="label comment" sortOrder="85" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Icon Color On Hover</label>
+                        <frontend_model>Magezon\Core\Block\Adminhtml\System\Config\Form\Field\Minicolors</frontend_model>
+                    </field>
+                </group>
+                <group id="animations" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Animations</label>
+                    <attribute type="expanded">1</attribute>
+                    <field id="distance_type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                        showInStore="1">
+                        <label>Scroll Distance</label>
+                        <source_model>Magezon\ScrollToTop\Model\Config\Source\DistanceType</source_model>
+                        <comment>Distance from top of page to where button starts appearing</comment>
+                    </field>
+                    <field id="scroll_distance_pixel" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>By Pixel</label>
+                            <depends>
+                                <field id="distance_type">1</field>
+                            </depends>
+                            <validate>validate-number validate-select no-whitespace</validate>
+                    </field>
+                    <field id="scroll_distance_percent" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>By Percent</label>
+                            <depends>
+                                <field id="distance_type">2</field>
+                            </depends>
+                            <validate>validate-number validate-select no-whitespace</validate>
+                            <comment>Maximum is 100%</comment>
+                    </field>
+                    <field id="speed_type" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                        showInStore="1">
+                        <label>Scroll Speed</label>
+                        <source_model>Magezon\ScrollToTop\Model\Config\Source\SpeedType</source_model>
+                        <comment>Window scroll up speed</comment>
+                    </field>
+                    <field id="scroll_speed_custom" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>By milliseconds</label>
+                            <depends>
+                                <field id="speed_type">custom</field>
+                            </depends>
+                            <validate>validate-number validate-select no-whitespace</validate>
+                            <comment>Higher value indicates slower scroll up speed, not faster one.</comment>
+                    </field>
+                    <field id="animation_in" translate="Module" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Animation In</label>
+                        <source_model>Magezon\ScrollToTop\Model\Config\Source\FadeInType</source_model>
+                    </field>
+                    <field id="animation_out" translate="Module" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Animation Out</label>
+                        <source_model>Magezon\ScrollToTop\Model\Config\Source\FadeOutType</source_model>
+                    </field>
+                </group>
+            </group>
+            <group id="position" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Position</label>
+                <attribute type="expanded">1</attribute>
+                <depends>
+                        <field id="scroll_to_top/general/enable">1</field>
+                </depends>
+                <field id="button_position" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Button Position</label>
+                    <source_model>Magezon\ScrollToTop\Model\Config\Source\Position</source_model>
+                </field>
+                <field id="margin_x" translate="label" type="hidden" sortOrder="84" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Margin X</label>
+                    <frontend_model>Magezon\ScrollToTop\Block\Adminhtml\System\Config\Form\Field\RangeSlider</frontend_model>
+                </field>
+                <field id="margin_y" translate="label" type="hidden" sortOrder="84" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Margin Y</label>
+                    <frontend_model>Magezon\ScrollToTop\Block\Adminhtml\System\Config\Form\Field\RangeSlider</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

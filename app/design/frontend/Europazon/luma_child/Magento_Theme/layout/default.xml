@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <body>
+        <!-- block création Header-->
+        <referenceContainer name="header-wrapper">
+            <container name="block-wrapper-to-hold-the-items" as="block-wrapper-to-hold-the-items" htmlTag="div"
+                       htmlClass="block-wrapper-to-hold-the-items"/>
+            <container name="block_minicart_user" as="block_minicart_user" htmlTag="div"
+                       htmlClass="block_minicart_user"/>
+        </referenceContainer>
+        <!-- move element in block -->
+        <move element="customer" destination="block_minicart_user" before="minicart"/>
+        <move element="minicart" destination="block_minicart_user"/>
+        <move element="block_minicart_user" destination="block-wrapper-to-hold-the-items"/>
+        <move element="top.search" destination="block-wrapper-to-hold-the-items" before="block_minicart_user"/>
+        <move element="logo" destination="block-wrapper-to-hold-the-items" before="top.search"/>
+        <move element="register-link" destination="top.links" before="-"/>
+        <!-- Custom menu header -->
+        <referenceContainer name="top.links">
+            <block class="Magento\Framework\View\Element\Template" name="customtest" before="-"
+                   template="Magento_Customer::account/link/my-account.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="block_minicart_user">
+            <block class="Magento\Framework\View\Element\Template" name="customwishlistbutton" before="customer"
+                   template="Magento_Theme::custom_button_wishlist.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="block_minicart_user">
+            <block class="Magento\Framework\View\Element\Template" name="customtipsbutton" before="customwishlistbutton"
+                   template="Magento_Theme::custom_button_tips.phtml"/>
+        </referenceContainer>
+
+        <!--referenceContainer name="header-wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="custommenublock" before="navigation.sections"
+                   template="Magento_Theme::custom_menu_header.phtml"/>
+        </referenceContainer-->
+        <!-- remove review -->
+        <!--referenceBlock name="reviews.tab" remove="true"/>
+        <referenceBlock name="product.review.form" remove="true"/>
+        <referenceBlock name="product.info.review" remove="true"/>
+        <referenceBlock name="customer-account-navigation-product-reviews-link" remove="true"/>
+        <referenceBlock name="review_view" remove="true"/-->
+
+        <referenceBlock name="category.image" remove="true"/>
+        <referenceBlock name="catalog.compare.link" remove="true"/>
+        <!-- remove first footer links -->
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="form.subscribe" remove="true"/>
+        <referenceBlock name="header.panel.wrapper" remove="true"/>
+        <referenceBlock name="wish-list-link" remove="true"/>
+        <referenceBlock name="my-account-link" remove="true"/>
+		<referenceBlock name="sales.order.info.links.invoice" remove="true"/>
+    </body>
+</page>

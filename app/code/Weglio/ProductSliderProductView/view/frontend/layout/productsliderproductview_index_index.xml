@@ -1,0 +1,11 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Weglio_ProductSliderProductView::css/owl.carousel.min.css"/>
+    </head>
+    <body>
+        <referenceContainer name="main">
+            <block class="Weglio\ProductSliderProductView\Block\ProductSliderProductView" name="product.slider.product.view"
+                   template="Weglio_ProductSliderProductView::carousel.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

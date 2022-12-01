@@ -1,0 +1,10 @@
+main#maincontent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	margin-top: 20px;
+}
+form.form.contact button.action.submit.primary {
+    background-color: var(--main-bg-color);
+    margin-bottom: 15px;
+}

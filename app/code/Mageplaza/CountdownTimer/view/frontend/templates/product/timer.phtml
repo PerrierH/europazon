@@ -1,0 +1,85 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_CountdownTimer
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+<?php
+/** @var \Mageplaza\CountdownTimer\Block\Product\Render $block */
+$timer    = Mageplaza\CountdownTimer\Helper\Data::jsonEncode($block->getDateByProduct());
+$style    = Mageplaza\CountdownTimer\Helper\Data::jsonDecode($block->getStyleTimer());
+$template = $block->getCountdownTemplate();
+$timerId  = uniqid('', false);
+if (!empty($template) && $timer !== null): ?>
+    <div id="mp-countdown-timer-<?= /* @noEscape */ $timerId ?>">
+        <?= /* @noEscape */ $template ?>
+    </div>
+
+    <style type="text/css">
+        #mp-countdown-timer-<?= /* @noEscape */ $timerId ?> .mp-countdown-title {
+            color: <?= /* @noEscape */ $style['title_color'] ?>;
+        }
+
+        #mp-countdown-timer-<?= /* @noEscape */ $timerId ?> .mp-countdown-message {
+            color: <?= /* @noEscape */ $style['message_color'] ?>;
+        }
+
+        #mp-countdown-timer-<?= /* @noEscape */ $timerId ?> .mp-countdown-txt {
+            color: <?= /* @noEscape */ $style['text_color'] ?>;
+        }
+
+        #mp-countdown-timer-<?= /* @noEscape */ $timerId ?> .mp-countdown-days {
+            color: <?= /* @noEscape */ $style['number_color'] ?>;
+        }
+
+        #mp-countdown-timer-<?= /* @noEscape */ $timerId ?> .mp-countdown-hours {
+            color: <?= /* @noEscape */ $style['number_color'] ?>;
+        }
+
+        #mp-countdown-timer-<?= /* @noEscape */ $timerId ?> .mp-countdown-minutes {
+            color: <?= /* @noEscape */ $style['number_color'] ?>;
+        }
+
+        #mp-countdown-timer-<?= /* @noEscape */ $timerId ?> .mp-countdown-seconds {
+            color: <?= /* @noEscape */ $style['number_color'] ?>;
+        }
+
+        <?php if (strpos($template, 'style2') !== false || strpos($template, 'style3') !== false || strpos($template, 'style4') !== false): ?>
+        #mp-countdown-timer-<?= /* @noEscape */ $timerId ?> .mp-countdown-clock {
+            background-color: <?= /* @noEscape */ $style['clock_color'] ?>;
+            border-color: <?= /* @noEscape */ $style['clock_color'] ?>;
+        }
+        <?php endif; ?>
+        <?php if (strpos($template, 'style5') !== false): ?>
+        #mp-countdown-timer-<?= /* @noEscape */ $timerId ?> .countdown-style5 {
+            background: <?= /* @noEscape */ $style['clock_color'] ?>;
+            border-color: <?= /* @noEscape */ $style['clock_color'] ?>;
+        }
+        <?php endif; ?>
+    </style>
+    <script type="text/x-magento-init">
+    {
+        "#mp-countdown-timer-<?= /* @noEscape */ $timerId ?>": {
+            "Mageplaza_CountdownTimer/js/product/mpcountdowntimer": {
+                "timer_id": "#mp-countdown-timer-<?= /* @noEscape */ $timerId ?>",
+                "rule": <?= /* @noEscape */ $timer ?>
+            }
+        }
+    }
+    </script>
+<?php endif; ?>

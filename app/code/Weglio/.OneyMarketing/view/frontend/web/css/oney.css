@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
+
+@media only screen and (min-width: 768px) {
+  .checkout-cart-index  .oney_marketing p{
+    width: 75px!important;
+  }
+
+  button.oney_simuler {
+      width: 130px;
+  }
+
+
+  div.oney_checkout {
+    float: right;
+    margin-right: 65px;
+    margin-bottom: -40px;
+  }
+
+  .checkout-index-index div.oney_checkout {
+    margin-bottom: 0!important;
+  }
+
+  .oney_checkout_global {
+    display: flex;
+    flex-direction: column;
+    float: right;
+  }
+  .checkout-cart-index .oney_marketing {
+      width: 250px;
+  }
+  .checkout-cart-index .oney_marketing img{
+      margin-bottom: 6px;
+  }
+  .catalog-product-view .oney_marketing {
+      justify-content: unset !important;
+  }
+  .catalog-product-view button.oney_simuler {
+      margin-top: 5px;
+  }
+
+}
+
+button.oney_simuler {
+    background: #81bc00;
+    color: white;
+    border: none;
+}
+
+.oney_marketing {
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+
+.oney_marketing p {
+    width: 75px;
+    margin: 0px 5px 0 5px;
+    font-size: 14px;
+    /*font-family: 'oneyGT';*/
+    font-weight: 400;
+    line-height: 1;
+    color: #54565B;
+}
+
+.oney_marketing p span {
+  /*font-family: 'oneyGT';*/
+  font-weight: 900;
+  font-size: 14px;
+}
+
+
+.catalog-product-view .oney_marketing p {
+    font-size: 14px;
+
+
+}
+.catalog-product-view .oney_marketing p span {
+  font-size: 14px;
+}
+.catalog-product-view .oney_marketing {
+    margin-top: -15px;
+    margin-left: 5px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
