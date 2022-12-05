@@ -98,23 +98,27 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                 <div class="control qty">
                     <label for="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty">
                         <span class="label"><?= $block->escapeHtml(__('Qty')) ?></span>
-                        <span>
-                            <button type="button" id="<?= /* @escapeNotVerified */$_item->getId() ?>-dec" class="decreaseQty ">-</button>
-                        </span>
-                        <input id="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty"
-                               name="cart[<?= $block->escapeHtmlAttr($_item->getId()) ?>][qty]"
-                               data-cart-item-id="<?= $block->escapeHtmlAttr($_item->getSku()) ?>"
-                               value="<?= $block->escapeHtmlAttr($block->getQty()) ?>"
-                               type="number"
-                               size="4"
-                               step="any"
-                               title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
-                               class="input-text qty"
-                               data-validate="{required:true,'validate-greater-than-zero':true}"
-                               data-role="cart-item-qty"/>
-                        <span>
-                          <button type="button" id="<?= /* @escapeNotVerified */$_item->getId() ?>-upt" class="increaseQty">+</button>
-                     </span>
+                        <div class="cart-qty">
+                          <input id="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty"
+                                 name="cart[<?= $block->escapeHtmlAttr($_item->getId()) ?>][qty]"
+                                 data-cart-item-id="<?= $block->escapeHtmlAttr($_item->getSku()) ?>"
+                                 value="<?= $block->escapeHtmlAttr($block->getQty()) ?>"
+                                 type="number"
+                                 size="4"
+                                 step="any"
+                                 title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
+                                 class="input-text qty"
+                                 data-validate="{required:true,'validate-greater-than-zero':true}"
+                                 data-role="cart-item-qty"/>
+                          <div class="qty-changer">
+                            <span>
+                              <button type="button" id="<?= /* @escapeNotVerified */$_item->getId() ?>-upt" class="increaseQty"><i class="fa-solid fa-caret-up"></i></button>
+                            </span>
+                            <span>
+                              <button type="button" id="<?= /* @escapeNotVerified */$_item->getId() ?>-dec" class="decreaseQty "><i class="fa-solid fa-caret-down"></i></button>
+                            </span>
+                          </div>
+                        </div>
                     </label>
                 </div>
             </div>

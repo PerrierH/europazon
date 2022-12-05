@@ -1,5 +1,17 @@
 
 /*Test*/
+.box-tocart .field.qty > label.label{
+  display: none;
+}
+#custom-qty .input-group {
+    display: flex;
+    align-items: center;
+}
+#custom-qty .input-group i.fa-solid{
+  font-style: normal;
+  font-family: 'FontAwesome';
+  font-size: 15px;
+}
 @media only screen and (min-width: 768px) {
   .breadcrumbs {
     margin-top: 7px;
@@ -8,10 +20,9 @@
 .maas-seller-name {
     margin-top: -20px;
 }
-.product-info-main .product-info-delivery {
-    display: flex;
-    justify-content: flex-end;
 }
+a.detail {
+    margin-left: 5px;
 }
 .box-tocart .action.tocart{
   font-size: 1.7rem;
@@ -292,18 +303,30 @@ div.maas-seller-name h3 a {
 }
 
 #custom-qty .input-group input#qty {
-    width: 35px;
+    width: 45px;
+    height: 45px;
+    margin-right: 1px;
+    border-radius: 3px;
 }
 
 #custom-qty .input-group__addon .input-group__button {
-    font-size: 30px;
-    background: unset;
-    border: unset;
-    font-weight: 600;
-    margin-top: -6px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    height: 0px;
+    line-height: 16px;
+    color: #ccc;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+}
+#custom-qty .input-group__addon button.input-group__button.input-group__button--increase {
+    margin-bottom: 2px;
 }
 
 @media only screen and (max-width: 768px) {
+
     #custom-qty .input-group {
         display: flex;
     }
@@ -314,14 +337,26 @@ div.maas-seller-name h3 a {
         padding: 4px 14px!important;
     }
     #custom-qty .input-group__addon .input-group__button {
-        margin-top: unset;
-        padding: 8px 6px;
+        margin-top: 0;
+        padding: 10px 8px;
     }
-
-    #custom-qty .input-group__addon .input-group__button.input-group__button--decrease {
-        margin-top: -2px;
-    }
-
+    div#custom-qty {
+    zoom: 1.2;
+  }
+  div#tab-label-fraude > form .action.primary.button.mp-open-custom-form > span {
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: #333333;
+}
+div#tab-label-fraude > form .action.primary.button.mp-open-custom-form {
+    background: white;
+    border: unset;
+    color: #666666;
+    padding-top: 12px;
+    width: 100%;
+    border-top: 1px solid #cccccc;
+    text-align: start;
+}
     .fotorama--fullscreen .fotorama__arr.fotorama__arr--next, .fotorama--fullscreen .fotorama__arr.fotorama__arr--prev {
         margin-top: 350px;
     }
@@ -451,13 +486,11 @@ a.retour_product {
         align-items: flex-end;
     }
 
-    div.product-add-form div.box-tocart div.actions {
-        margin-left: 50px;
-    }
-
     div.box-tocart button#product-addtocart-button,
     div.box-tocart button#product-addtocart-button:hover {
         width: 275px;
+        padding: 12px 17px;
+        margin-bottom: 20px;
 
     }
 
@@ -481,7 +514,7 @@ a.retour_product {
     }
 
     div.product-info-price .price-container .price {
-        font-size: 3.4rem !important;
+        font-size: 3rem !important;
         font-weight: bold !important;
     }
 
@@ -562,6 +595,7 @@ a.retour_product {
     div.box-tocart div.fieldset {
         display: flex;
         align-items: center;
+        justify-content: space-between;
     }
 
     div.box-tocart div.fieldset div.field.qty {
@@ -569,7 +603,7 @@ a.retour_product {
     }
 
     div.box-tocart button#product-addtocart-button {
-        margin-bottom: -25px;
+        margin-bottom: 0px;
     }
 
     .column.main .product.media {

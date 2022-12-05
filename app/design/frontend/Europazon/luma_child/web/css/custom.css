@@ -1944,36 +1944,8 @@ ul#ui-id-1 li.level0 a.level-top span.ui-menu-icon.ui-icon::after {
     color: #061b38;
 }
 
-.checkout-cart-index .cart.table-wrapper .col.qty .input-text {
-    height: 40px !important;
-    width: 40px !important;
-}
-
 .checkout-cart-index .cart.item .field.qty > .control.qty > label {
     display: flex;
-}
-
-.checkout-cart-index .cart.item .field.qty > .control.qty > label span .decreaseQty,
-.checkout-cart-index .cart.item .field.qty > .control.qty > label span .increaseQty {
-    margin-top: -4px;
-    font-size: 30px;
-    background: unset;
-    border: unset;
-}
-
-@media only screen and (max-width: 768px) {
-    .checkout-cart-index .cart.item .field.qty > .control.qty > label span .decreaseQty,
-    .checkout-cart-index .cart.item .field.qty > .control.qty > label span .increaseQty {
-        padding: 1px 6px !important;
-    }
-}
-
-.checkout-cart-index .cart.item .field.qty > .control.qty > label span .increaseQty {
-    margin-left: 3px;
-}
-
-.checkout-cart-index .cart.item .field.qty > .control.qty > label span .decreaseQty {
-    margin-right: 3px;
 }
 
 .checkout-cart-index .maas-delivery-info {
@@ -2142,4 +2114,36 @@ div.tips_button ul.dropdown-options {
 
 .customer-account-logoutsuccess .page-header {
     margin-bottom: 20px;
+}
+/*Cart*/
+.checkout-cart-index  div.qty-changer button {
+    border: 1px solid #cccccc!important;
+    border-radius: 3px;
+    height: 0px;
+    line-height: 16px;
+    color: #ccc;
+    font-size: 11px!important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+}
+.checkout-cart-index  div.qty-changer button i.fa-solid {
+    font-style: unset!important;
+    font-family: 'FontAwesome';
+    font-size: 15px!important;
+}
+.checkout-cart-index .cart.table-wrapper .col.qty .input-text {
+    height: 45px !important;
+    width: 45px !important;
+}
+
+.checkout-cart-index .qty-changer {
+    margin-top: -6px;
+}
+.checkout-cart-index .control.qty .cart-qty {
+    display: flex;
+}
+.checkout-cart-index .item-info .price {
+    color: #061b38;
 }
