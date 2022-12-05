@@ -63,10 +63,7 @@ atlassian*
 /pub/static/*
 !/pub/static/.htaccess
 
-/var/*
-!/var/.htaccess
-/vendor/*
-!/vendor/.htaccess
+/var
+/vendor/
 /generated/*
-!/generated/.htaccess
 .DS_Store
